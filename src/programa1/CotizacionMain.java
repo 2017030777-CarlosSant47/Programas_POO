@@ -18,6 +18,7 @@ public class CotizacionMain {
             System.out.println("3 - Calcular Pago Final");
             System.out.println("4 - Calcular Pago Mensual");
             System.out.println("5 - Modificar Cotizacion");
+
             System.out.println("6 - Salir");
             System.out.println("Elije una opccion");
             op = in.nextInt();

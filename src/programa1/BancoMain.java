@@ -22,7 +22,8 @@ public class BancoMain {
             System.out.println("3 - Retirar");
             System.out.println("4 - Consultar Saldo");
             System.out.println("5 - Editar Cuenta");
-            System.out.println("6 - Salir");
+            System.out.println("6 - Mostrar informacion del cliente");
+            System.out.println("7 - Salir");
             System.out.println("Elige una opccion");
 
             op = in.nextInt();
@@ -123,12 +124,15 @@ public class BancoMain {
                     op = 0;
                     break;
                 case 6:
+                    System.out.println(cuenta.getNombreCliente() + " Nacio el " + cuenta.getFechaNacimiento() + " con domicilio en " + cuenta.getDomicilio());
+                    break;
+                case 7:
                     System.out.println("Adios 7u7");
                     break;
                 default: System.out.println("Opccion invalida");
             }
 
-        }while (op != 6);
+        }while (op != 7);
 
     }
 }
