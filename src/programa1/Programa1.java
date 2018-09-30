@@ -119,6 +119,7 @@ public class Programa1 {
                     }while(opSubMenu != "4 - Salir");
                     break;
                 case "6 - Salir":
+                    messageDialog("Fecha", "Adios :) oxoxoxoxo", JOptionPane.OK_OPTION);
                     System.out.printf("Adios :) oxoxoxoxo");
                     break;
 
@@ -130,5 +131,13 @@ public class Programa1 {
             */
         }while(opMenu != "6 - Salir");
     }
+
+
+    private static void messageDialog(String title, String message, int option)
+    {
+        JOptionPane.showMessageDialog(null, message, title, option);
+
+    }
+
     
 }
