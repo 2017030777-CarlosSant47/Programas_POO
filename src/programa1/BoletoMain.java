@@ -1,6 +1,5 @@
 package programa1;
 import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 /*
@@ -22,7 +21,9 @@ public class BoletoMain {
         Scanner in = new Scanner(System.in);
         Object menu[] = {"1 - Crear Boleto", "2 - Calcular Subtotal", "3 - Calcular Descuento", "4 - Calcular Total a pagar",
         "5 - Modificar Boleto", "6 - Mostrar Informacion del Boleto", "7 - Salir"};
-
+        final Object subMenu[] = {"1 - Modificar numero de boleto", "2 - Modificar nombre de cliente",
+                "3 - Modificar destino", "4 - Modificar tipo de viaje", "5 - Modificar precio del boleto",
+                "6 - Modificar fecha", "7 - Salir"};
 
         Object tipoBoleto[] = {"1 - Simple", "2 - Redondo"};
         int numBoleto = 0, tipoViaje = 0, op = 0, edad;
@@ -82,6 +83,7 @@ public class BoletoMain {
                         {
                             if(tipoBoleto[x].toString().matches(opTipo)){
                                 tipoViaje = x + 1;
+                                break;
                             }
                         }
                     }while(tipoViaje > 2 || tipoViaje < 1);
@@ -117,7 +119,14 @@ public class BoletoMain {
                             PROGRAM_NAME, JOptionPane.DEFAULT_OPTION);
                     break;
                 case 5:
+                    String opSubMenu = "";
                     do{
+
+
+
+                        opSubMenu = (String) JOptionPane.showInputDialog(null, "Elige una opccion", "Menu",
+                                JOptionPane.QUESTION_MESSAGE, null, subMenu, subMenu[0]);
+                        /*
                         printf("1 - Modificar numero de boleto");
                         printf("2 - Modificar nombre de cliente");
                         printf("3 - Modificar destino");
@@ -125,42 +134,55 @@ public class BoletoMain {
                         printf("5 - Modificar precio del boleto");
                         printf("6 - Modificar fecha");
                         printf("7 - Salir");
-                        op = in.nextInt();
+                        */
+                        op = returnValueMenu(subMenu, opSubMenu);
+
                         switch (op)
                         {
                             case 1:
-                                printf("Introduzca el numero de Boleto");
-                                numBoleto = in.nextInt();
+                                //printf("Introduzca el numero de Boleto");
+                                numBoleto = numBoleto = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca el numero del boleto",
+                                        PROGRAM_NAME, JOptionPane.PLAIN_MESSAGE));
                                 boleto.setNoBoleto(numBoleto);
                                 break;
                             case 2:
-                                printf("Intduzca el nombre");
-                                nombre = in.next();
+                                //printf("Intduzca el nombre");
+                                nombre = JOptionPane.showInputDialog(null, "Introduzca el nombre",
+                                        PROGRAM_NAME, JOptionPane.OK_OPTION);
                                 boleto.setNombreCliente(nombre);
                                 break;
                             case 3:
-                                printf("Introduzca el destino");
-                                destino = in.next();
+                                //printf("Introduzca el destino");
+                                destino = JOptionPane.showInputDialog(null, "Introduzca el destino",
+                                        PROGRAM_NAME, JOptionPane.OK_OPTION);
                                 boleto.setDestino(destino);
                                 break;
                             case 4:
+                                String opTipo = "";
                                 do{
-                                    printf("Introduce el tipo de boleto");
-                                    printf("1 - Simple");
-                                    printf("2 - Redondo");
-                                    tipoViaje = in.nextInt();
-                                    boleto.setTipoViaje(tipoViaje);
 
+                                    opTipo = (String) JOptionPane.showInputDialog(null, "Introduce el tipo de boleto", "Menu",
+                                            JOptionPane.QUESTION_MESSAGE, null, tipoBoleto, tipoBoleto[0]);
+                                    for(int x = 0; x < tipoBoleto.length; x++)
+                                    {
+                                        if(tipoBoleto[x].toString().matches(opTipo)){
+                                            tipoViaje = x + 1;
+                                            break;
+                                        }
+                                    }
                                 }while(tipoViaje > 2 || tipoViaje < 1);
+                                boleto.setTipoViaje(tipoViaje);
                                 break;
                             case 5:
-                                printf("Introduce el precio del boleto $");
-                                precio = in.nextFloat();
+                                //printf("Introduce el precio del boleto $");
+                                precio = Float.parseFloat(JOptionPane.showInputDialog(null, "Introduzca el precio",
+                                        PROGRAM_NAME, JOptionPane.OK_OPTION));
                                 boleto.setPrecio(precio);
                                 break;
                             case 6:
-                                printf("Introduzca la fecha");
-                                fecha = in.next();
+                                //printf("Introduzca la fecha");
+                                fecha = JOptionPane.showInputDialog(null, "Introduzca el fecha",
+                                        PROGRAM_NAME, JOptionPane.OK_OPTION);
                                 boleto.setFecha(fecha);
                                 break;
                             case 7:
@@ -171,10 +193,14 @@ public class BoletoMain {
                     op = 0;
                     break;
                 case 6:
-                    printf(boleto.mostrarInformacion());
+                    JOptionPane.showMessageDialog(null, boleto.mostrarInformacion(),
+                            PROGRAM_NAME, JOptionPane.DEFAULT_OPTION);
+                    //printf(boleto.mostrarInformacion());
                     break;
                 case 7:
-                    printf("Adios uwu");
+                    JOptionPane.showMessageDialog(null, "Adios uwu",
+                            PROGRAM_NAME, JOptionPane.DEFAULT_OPTION);
+                    //printf("Adios uwu");
                     break;
                 default: printf("Esta opccion es invalida");
             }
@@ -190,5 +216,20 @@ public class BoletoMain {
     {
         System.out.println(s);
     }
+
+    private static int returnValueMenu(Object[] objects, String compare)
+    {
+        int position = 0;
+        for(int x = 0; x < objects.length; x++)
+        {
+            if(objects[x].toString().matches(compare))
+            {
+                position = x + 1;
+                break;
+            }
+        }
+        return position;
+    }
+
     
 }
