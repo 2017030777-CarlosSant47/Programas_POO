@@ -23,6 +23,7 @@ public class BoletoMain {
         Object menu[] = {"1 - Crear Boleto", "2 - Calcular Subtotal", "3 - Calcular Descuento", "4 - Calcular Total a pagar",
         "5 - Modificar Boleto", "6 - Mostrar Informacion del Boleto", "7 - Salir"};
 
+
         Object tipoBoleto[] = {"1 - Simple", "2 - Redondo"};
         int numBoleto = 0, tipoViaje = 0, op = 0, edad;
         String nombre = "", destino = "", fecha = "";
