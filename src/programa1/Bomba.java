@@ -53,21 +53,22 @@ public class Bomba {
         return this.getCapacidad() - this.getLitrosvendidos();
     }
 
-    public int calcularVenta(int litros)
+    public float calcularVenta(int litros)
     {
-        int venta = 0;
+        float venta = 0.0f;
         if(this.revisarCantidadGas() > 0)
         {
-            venta = (int) gasolina.calcularPrecio() * litros;
+            venta = gasolina.calcularPrecio() * litros;
+            this.setLitrosvendidos(this.getLitrosvendidos() + litros);
         }
 
         return venta;
     }
 
 
-    public int calcularVentaTotal(){
-        int total = 0;
-        total = this.litrosvendidos * (int) gasolina.getPrecioBase();
+    public float calcularVentaTotal(){
+        float total = 0.0f;
+        total = this.litrosvendidos * gasolina.calcularPrecio();
         return total;
     }
 
